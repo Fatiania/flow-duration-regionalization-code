@@ -1,0 +1,125 @@
+{
+  "_README": [
+    "This config file controls paths, parameter columns, log-transformed columns, PC columns, and prediction-capping rules.",
+    "Relative paths are interpreted from the repository root.",
+    "Edit parameter_columns and log_transform_columns when the input parameter file changes.",
+    "For regression sections, parameter_columns can be left as [] to infer the parameter names from the PCA loadings file."
+  ],
+  "pca_analysis": {
+    "input_parameters": "data/input_parameters_for_pca.xlsx",
+    "output_dir": "outputs/01_pca_analysis",
+    "station_column": null,
+    "parameter_columns": [
+      "Forest",
+      "SoilB",
+      "SoilC",
+      "SF",
+      "SD",
+      "BFI",
+      "MAP",
+      "Hmean",
+      "L",
+      "PET",
+      "Slope",
+      "SlopeMC"
+    ],
+    "log_transform_columns": [
+      "MAP",
+      "Hmean",
+      "L",
+      "PET"
+    ],
+    "skip_bad_rows_with_missing_or_invalid_log": false
+  },
+  "dv_regression_noncapped": {
+    "dv_file": "data/DV_noncapped.xlsx",
+    "pc_scores_file": "outputs/01_pca_analysis/PCA_scores_ALL_PC.xlsx",
+    "pca_input_parameters": "data/input_parameters_for_regression_noncapped.xlsx",
+    "pca_loadings_file": "outputs/01_pca_analysis/PCA_loadings_ALL_PC.xlsx",
+    "output_dir": "outputs/02_dv_regression_noncapped",
+    "dv_station_column": null,
+    "pc_station_column": null,
+    "parameter_columns": [],
+    "log_transform_columns": [
+      "A",
+      "MAP",
+      "Hmean",
+      "L",
+      "PET"
+    ],
+    "pc_columns": [
+      "PC1",
+      "PC2",
+      "PC3",
+      "PC4"
+    ],
+    "skip_bad_rows_with_missing_or_invalid_log": true,
+    "cap_predictions": false,
+    "clip_qnx_qnz_at_zero": true,
+    "station_colors": {
+      "napoli": "red",
+      "catanzaro": "blue",
+      "bari": "green"
+    }
+  },
+  "dv_regression_capped_0_1": {
+    "dv_file": "data/DV_capped_0_1.xlsx",
+    "pc_scores_file": "outputs/01_pca_analysis/PCA_scores_ALL_PC.xlsx",
+    "pca_input_parameters": "data/input_parameters_for_regression_capped.xlsx",
+    "pca_loadings_file": "outputs/01_pca_analysis/PCA_loadings_ALL_PC.xlsx",
+    "output_dir": "outputs/03_dv_regression_capped_0_1",
+    "dv_station_column": null,
+    "pc_station_column": null,
+    "parameter_columns": [],
+    "log_transform_columns": [
+      "A",
+      "MAP",
+      "Hmean",
+      "L",
+      "PET"
+    ],
+    "pc_columns": [
+      "PC1",
+      "PC2",
+      "PC3"
+    ],
+    "skip_bad_rows_with_missing_or_invalid_log": true,
+    "cap_predictions": true,
+    "prediction_lower_bound": 0.0,
+    "prediction_upper_bound": 1.0,
+    "cap_mode": "all",
+    "unit_interval_keywords": [
+      "mu",
+      "prob",
+      "probability",
+      "ratio",
+      "fraction",
+      "frac",
+      "phi",
+      "p_"
+    ],
+    "unit_range_tolerance": 0.05,
+    "clip_qnx_qnz_at_zero": true,
+    "station_colors": {
+      "napoli": "red",
+      "catanzaro": "blue",
+      "bari": "green"
+    }
+  },
+  "lognormal_distribution_fitting": {
+    "input_dir": "data/non_zero_flow_station_files",
+    "input_file_pattern": "*.xlsx",
+    "output_dir": "outputs/04_lognormal_distribution_fitting",
+    "sheet_names": [],
+    "value_column_name": null,
+    "value_column_index": 0,
+    "use_positive_only": true,
+    "normalize_by_mean": true,
+    "log_base": "10",
+    "station_label_mode": "first_letter_plus_second_token",
+    "group_name_mode": "first_token",
+    "save_dpi": 600,
+    "panel_width_cm": 4.8,
+    "panel_height_cm": 4.2
+  }
+}

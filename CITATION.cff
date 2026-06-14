@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "Reviewer code for PCA, DV-PC regression, capped regression, and log-normal flow distribution analyses"
+message: "If you use this code, please cite the archived repository release."
+type: software
+authors:
+  - family-names: "Moradi"
+    given-names: "Fatemeh"
+repository-code: "https://github.com/USERNAME/REPOSITORY"
+license: "MIT"
+version: "1.0.0"
+date-released: "2026-06-15"
